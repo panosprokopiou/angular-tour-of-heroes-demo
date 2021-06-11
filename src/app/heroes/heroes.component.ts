@@ -18,4 +18,14 @@ export class HeroesComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSelect(hero: Hero) {
+    this.selectedHero = hero;
+  }
+
+  isSelected(hero: Hero) {
+    if (this.selectedHero && hero) {
+      return hero.id === this.selectedHero.id;
+    }
+  }
+
 }
