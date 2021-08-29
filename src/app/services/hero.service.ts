@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
 
 import {MessageService} from './message.service';
 import {Hero} from '../domain/hero.interface';
@@ -10,8 +11,13 @@ import {HEROES} from '../mocks/heroes.mock';
 })
 export class HeroService {
 
-  constructor(private messageService: MessageService) {
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient,
+  ) {
   }
+
+  private heroesUrl = 'api/heroes';  // URL to web api
 
   getHeroes(): Observable<Hero[]> {
     const heroes = of(HEROES);
