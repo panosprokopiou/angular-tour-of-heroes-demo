@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { MessageService } from './message.service';
-import { Hero } from '../domain/hero.interface';
-import { HEROES } from '../mocks/heroes.mock';
+import {MessageService} from './message.service';
+import {Hero} from '../domain/hero.interface';
+import {HEROES} from '../mocks/heroes.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,12 @@ export class HeroService {
     // For now, assume that a hero with the specified `id` always exists.
     // Error handling will be added in the next step of the tutorial.
     const hero = HEROES.find(h => h.id === id)!;
-    this.messageService.add(`HeroService: fetched hero id=${ id }`);
+    this.log(`fetched hero id=${id}`);
     return of(hero);
+  }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
   }
 }
